@@ -8,14 +8,14 @@ import { Level } from "@/types/game";
 import ScoreHistores from "./ScoreHistores";
 
 const StartView: React.FC<StartViewProps> = ({ scoreHistories, level, showScoreHistoriesModal, handleToggleShowScoreHistoriesModal, handleChangeLevel, handleStartGame }) => (
-    <main>
+    <main className="h-screen w-full flex items-center justify-center">
         {/* Score Histores Modal */}
         <ScoreHistores
             scoreHistories={scoreHistories}
             showScoreHistoriesModal={showScoreHistoriesModal}
             handleToggleShowScoreHistoriesModal={handleToggleShowScoreHistoriesModal}
         />
-        <section className="my-44 custom-container">
+        <section className="custom-container">
             <div className="flex flex-col items-center gap-4">
                 {/* Header Text */}
                 <GradientHeading text="TIC TAC TOE" />

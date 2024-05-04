@@ -7,14 +7,14 @@ import ResultModal from "./ResultModal";
 import GradientButton from "@/components/GradientButton";
 
 const MainView: React.FC<MainViewProps> = ({ squares, level, playerScore, computerScore, winnerResult, showResultModal, handleClickSquare, handleToggleShowResultModal, handleExitGame }) => (
-    <main>
+    <main className="h-screen w-full flex items-center justify-center">
         {/* Result Modal */}
         <ResultModal
             showResultModal={showResultModal}
             winnerResult={winnerResult}
             handleToggleShowResultModal={handleToggleShowResultModal}
         />
-        <section className="my-16 custom-container">
+        <section className="custom-container">
             <div className="flex flex-col items-center gap-8">
                 {/* Header VS Text */}
                 <div className="flex flex-col gap-2">
