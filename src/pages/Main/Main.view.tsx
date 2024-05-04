@@ -4,7 +4,7 @@ import ScoreBoard from "./ScoreBoard";
 import TicTacToeBoard from "./TicTacToeBoard";
 import { MainViewProps } from "./Main.type";
 
-const MainView: React.FC<MainViewProps> = ({ squares, isXNext, handleClickSquare }) => (
+const MainView: React.FC<MainViewProps> = ({ squares, handleClickSquare }) => (
     <main className="md:my-24">
         <section className="custom-container">
             <div className="flex flex-col items-center gap-8">

@@ -20,7 +20,6 @@ const Main: React.FC = () => {
 
     return <MainView
         squares={squares}
-        isXNext={isXNext}
         handleClickSquare={handleClickSquare}
     />;
 };
