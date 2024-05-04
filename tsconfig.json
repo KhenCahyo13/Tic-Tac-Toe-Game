@@ -31,6 +31,7 @@
 			"viewports/*": ["src/viewports/*"],
 			"assets/*": ["src/assets/*"],
 			"helpers/*": ["src/helpers/*"],
+			"hooks/*": ["src/hooks/*"],
 		},
 	},
 	"include": [
