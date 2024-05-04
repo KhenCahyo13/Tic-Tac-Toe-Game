@@ -5,9 +5,12 @@ import { getEasyComputerMove } from "@/helpers/easyLevel";
 import { getMediumComputerMove } from "@/helpers/mediumLevel";
 import { getHardComputerMove } from "@/helpers/hardLevel";
 import { useNavigate } from "react-router-dom";
-import { storeItemsToLocalStorage } from "@/helpers/localStorage";
+import { getItemsFromLocalStorage, storeItemsToLocalStorage } from "@/helpers/localStorage";
+import { Level } from "@/types/game";
 
 const Main: React.FC = () => {
+    const level: Level = getItemsFromLocalStorage('gameDifficulty');
+
     const [turn, setTurn] = useState<string>('Player');
     const [squares, setSquares] = useState<string[] | null[]>(Array(9).fill(null));
     const [playerScore, setPlayerScore] = useState<number>(0);
@@ -36,7 +39,7 @@ const Main: React.FC = () => {
         if (turn !== 'Computer') return;
     
         setSquares((prevSquares) => {
-            const index = getHardComputerMove(prevSquares);
+            const index = level === 'Easy' ? getEasyComputerMove(prevSquares) : level === 'Medium' ? getMediumComputerMove(prevSquares) : level === 'Hard' ? getHardComputerMove(prevSquares) : null;
             if (index === undefined || index === null) {
                 return prevSquares;
             }
@@ -91,6 +94,7 @@ const Main: React.FC = () => {
 
     return <MainView
         squares={squares}
+        level={level.toUpperCase()}
         playerScore={playerScore}
         computerScore={computerScore}
         winnerResult={winnerResult}

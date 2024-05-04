@@ -1,5 +1,6 @@
 export interface MainViewProps {
     squares: string[]|null[];
+    level: string;
     playerScore: number;
     computerScore: number;
     winnerResult: string;

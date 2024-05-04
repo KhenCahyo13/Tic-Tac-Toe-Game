@@ -6,7 +6,7 @@ import { MainViewProps } from "./Main.type";
 import ResultModal from "./ResultModal";
 import GradientButton from "@/components/GradientButton";
 
-const MainView: React.FC<MainViewProps> = ({ squares, playerScore, computerScore, winnerResult, showResultModal, handleClickSquare, handleToggleShowResultModal, handleExitGame }) => (
+const MainView: React.FC<MainViewProps> = ({ squares, level, playerScore, computerScore, winnerResult, showResultModal, handleClickSquare, handleToggleShowResultModal, handleExitGame }) => (
     <main>
         {/* Result Modal */}
         <ResultModal
@@ -20,7 +20,7 @@ const MainView: React.FC<MainViewProps> = ({ squares, playerScore, computerScore
                 <div className="flex flex-col gap-2">
                     <GradientText text="YOU" size="xl" />
                     <GradientText text="VS" size="base" />
-                    <GradientText text="EASY COMPUTER" size="xl" />
+                    <GradientText text={`${level} COMPUTER`} size="xl" />
                 </div>
                 {/* Score Board */}
                 <ScoreBoard
