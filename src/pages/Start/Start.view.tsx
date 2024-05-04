@@ -5,10 +5,17 @@ import GradientButton from "@/components/GradientButton";
 import { StartViewProps } from "./Start.type";
 import GradientSelectBox from "@/components/GradientSelectBox";
 import { Level } from "@/types/game";
+import ScoreHistores from "./ScoreHistores";
 
-const StartView: React.FC<StartViewProps> = ({ level, handleChangeLevel, handleStartGame }) => (
-    <main className="my-44">
-        <section className="custom-container">
+const StartView: React.FC<StartViewProps> = ({ scoreHistories, level, showScoreHistoriesModal, handleToggleShowScoreHistoriesModal, handleChangeLevel, handleStartGame }) => (
+    <main>
+        {/* Score Histores Modal */}
+        <ScoreHistores
+            scoreHistories={scoreHistories}
+            showScoreHistoriesModal={showScoreHistoriesModal}
+            handleToggleShowScoreHistoriesModal={handleToggleShowScoreHistoriesModal}
+        />
+        <section className="my-44 custom-container">
             <div className="flex flex-col items-center gap-4">
                 {/* Header Text */}
                 <GradientHeading text="TIC TAC TOE" />
@@ -21,7 +28,7 @@ const StartView: React.FC<StartViewProps> = ({ level, handleChangeLevel, handleS
                         {difficultiesSelectItem.map((item) => (
                             <Fragment key={item.key}>
                                 {item.value === level ? (
-                                        <GradientSelectBox label={level} onClick={() => handleChangeLevel(item.value as Level)} />
+                                    <GradientSelectBox label={level} onClick={() => handleChangeLevel(item.value as Level)} />
                                 ) : (
                                     <div className="p-4 border border-gray-400 text-gray-400 rounded-lg text-sm cursor-pointer" onClick={() => handleChangeLevel(item.value as Level)}>
                                         {item.label}
@@ -30,6 +37,10 @@ const StartView: React.FC<StartViewProps> = ({ level, handleChangeLevel, handleS
                             </Fragment>
                         ))}
                     </div>
+                </div>
+                {/* Button Show Score Histories Modal */}
+                <div className="mt-8">
+                    <GradientButton label="Score Histories" onClick={handleToggleShowScoreHistoriesModal} />
                 </div>
             </div>
         </section>

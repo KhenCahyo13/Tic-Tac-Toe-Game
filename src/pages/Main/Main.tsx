@@ -6,10 +6,11 @@ import { getMediumComputerMove } from "@/helpers/mediumLevel";
 import { getHardComputerMove } from "@/helpers/hardLevel";
 import { useNavigate } from "react-router-dom";
 import { getItemsFromLocalStorage, storeItemsToLocalStorage } from "@/helpers/localStorage";
-import { Level } from "@/types/game";
+import { Level, ScoreHistory } from "@/types/game";
 
 const Main: React.FC = () => {
     const level: Level = getItemsFromLocalStorage('gameDifficulty');
+    const scoreHistories: ScoreHistory[] = getItemsFromLocalStorage('scoreHistories') || [];
 
     const [turn, setTurn] = useState<string>('Player');
     const [squares, setSquares] = useState<string[] | null[]>(Array(9).fill(null));
@@ -21,9 +22,18 @@ const Main: React.FC = () => {
     const navigate = useNavigate();
 
     const handleExitGame = useCallback(() => {
+        const scoreHistory = {
+            level: level,
+            playerScore: playerScore,
+            computerScore: computerScore
+        };
+
+        const scoreHistoryItems = [...scoreHistories, scoreHistory];
+
         storeItemsToLocalStorage('isStartGame', false);
+        storeItemsToLocalStorage('scoreHistories', scoreHistoryItems);
         navigate('/');
-    }, []);
+    }, [level, playerScore, computerScore, navigate]);
 
     const handleToggleShowResultModal = useCallback(() => {
         setShowResultModal(!showResultModal);
