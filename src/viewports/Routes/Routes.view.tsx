@@ -2,9 +2,11 @@ import { Suspense } from "react";
 import { RoutesViewProps } from "./Routes.type";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import HasStartGame from "../HasStartGame";
+import NotFound from "@/pages/Handler/NotFound";
+import Loading from "@/pages/Handler/Loading";
 
 const RoutesView: React.FC<RoutesViewProps> = ({ privateRoutes, publicRoutes }) => (
-    <Suspense fallback="Loading...">
+    <Suspense fallback={<Loading />}>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Navigate to="/start" />} />
@@ -28,6 +30,7 @@ const RoutesView: React.FC<RoutesViewProps> = ({ privateRoutes, publicRoutes }) 
                         element={item.element}
                     />
                 ))}
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     </Suspense>

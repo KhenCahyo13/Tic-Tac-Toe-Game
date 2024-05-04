@@ -1,4 +1,4 @@
-import Routes from './viewports/Routes/Routes';
+import Routes from "./viewports/Routes"
 
 function App() {
 	return (
