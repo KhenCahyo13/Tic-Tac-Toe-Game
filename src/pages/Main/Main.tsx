@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import MainView from "./Main.view"
 import { calculateGameWinner } from "@/helpers/calculateGameWinner";
 import { getEasyComputerMove } from "@/helpers/easyLevel";
+import { getMediumComputerMove } from "@/helpers/mediumLevel";
 
 const Main: React.FC = () => {
     const [turn, setTurn] = useState<string>('Player');
@@ -25,7 +26,7 @@ const Main: React.FC = () => {
         if (turn !== 'Computer') return;
     
         setSquares((prevSquares) => {
-            const index = getEasyComputerMove(prevSquares);
+            const index = getMediumComputerMove(prevSquares);
             if (index === undefined || index === null) {
                 return prevSquares;
             }
