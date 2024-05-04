@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import StartView from "./Start.view"
 import { getItemsFromLocalStorage, storeItemsToLocalStorage } from "@/helpers/localStorage";
 import { useNavigate } from "react-router-dom";

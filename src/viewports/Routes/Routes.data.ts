@@ -1,4 +1,3 @@
-import { getItemsFromLocalStorage } from "@/helpers/localStorage";
 import { Route } from "@/types/routes";
 import { createElement, lazy } from "react";
 
