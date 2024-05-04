@@ -3,10 +3,18 @@ import { memo } from "react";
 import ScoreBoard from "./ScoreBoard";
 import TicTacToeBoard from "./TicTacToeBoard";
 import { MainViewProps } from "./Main.type";
+import ResultModal from "./ResultModal";
+import GradientButton from "@/components/GradientButton";
 
-const MainView: React.FC<MainViewProps> = ({ squares, handleClickSquare }) => (
-    <main className="md:my-24">
-        <section className="custom-container">
+const MainView: React.FC<MainViewProps> = ({ squares, playerScore, computerScore, winnerResult, showResultModal, handleClickSquare, handleToggleShowResultModal }) => (
+    <main>
+        {/* Result Modal */}
+        <ResultModal
+            showResultModal={showResultModal}
+            winnerResult={winnerResult}
+            handleToggleShowResultModal={handleToggleShowResultModal}
+        />
+        <section className="my-16 custom-container">
             <div className="flex flex-col items-center gap-8">
                 {/* Header VS Text */}
                 <div className="flex flex-col gap-2">
@@ -15,12 +23,17 @@ const MainView: React.FC<MainViewProps> = ({ squares, handleClickSquare }) => (
                     <GradientText text="EASY COMPUTER" size="xl" />
                 </div>
                 {/* Score Board */}
-                <ScoreBoard />
+                <ScoreBoard
+                    playerScore={playerScore}
+                    computerScore={computerScore}
+                />
                 {/* Tic Tac Toe Board */}
                 <TicTacToeBoard
                     squares={squares}
                     handleClickSquare={handleClickSquare}
                 />
+                {/* Exit Game */}
+                <GradientButton label="Exit Game" />
             </div>
         </section>
     </main>
