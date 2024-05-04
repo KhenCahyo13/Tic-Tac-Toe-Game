@@ -10,7 +10,7 @@ import { Level, ScoreHistory } from "@/types/game";
 
 const Main: React.FC = () => {
     const level: Level = getItemsFromLocalStorage('gameDifficulty');
-    const scoreHistories: ScoreHistory[] = getItemsFromLocalStorage('scoreHistories') || [];
+    const scoreHistories: ScoreHistory[] = getItemsFromLocalStorage('scoreHistories') || [] || null;
 
     const [turn, setTurn] = useState<string>('Player');
     const [squares, setSquares] = useState<string[] | null[]>(Array(9).fill(null));
@@ -22,18 +22,26 @@ const Main: React.FC = () => {
     const navigate = useNavigate();
 
     const handleExitGame = useCallback(() => {
+        const existingIndex = scoreHistories.findIndex((sh) => sh.level === level);
+    
         const scoreHistory = {
             level: level,
             playerScore: playerScore,
             computerScore: computerScore
         };
-
-        const scoreHistoryItems = [...scoreHistories, scoreHistory];
-
+    
+        let scoreHistoryItems;
+        if (existingIndex !== -1) {
+            scoreHistoryItems = [...scoreHistories];
+            scoreHistoryItems[existingIndex] = scoreHistory;
+        } else {
+            scoreHistoryItems = [...scoreHistories, scoreHistory];
+        }
+    
         storeItemsToLocalStorage('isStartGame', false);
         storeItemsToLocalStorage('scoreHistories', scoreHistoryItems);
         navigate('/');
-    }, [level, playerScore, computerScore, navigate]);
+    }, [level, playerScore, computerScore, navigate, scoreHistories]);    
 
     const handleToggleShowResultModal = useCallback(() => {
         setShowResultModal(!showResultModal);
@@ -101,6 +109,16 @@ const Main: React.FC = () => {
             return () => clearTimeout(timer);
         }
     }, [turn, handleComputerTurn]);
+
+    useEffect(() => {
+        if (scoreHistories !== null) {
+            const lastScore = scoreHistories.reverse().find((item) => item.level === level);
+            if (lastScore) {
+                setPlayerScore(lastScore.playerScore);
+                setComputerScore(lastScore.computerScore);
+            }
+        }
+    }, []);
 
     return <MainView
         squares={squares}
