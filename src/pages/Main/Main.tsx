@@ -4,6 +4,8 @@ import { calculateGameWinner } from "@/helpers/calculateGameWinner";
 import { getEasyComputerMove } from "@/helpers/easyLevel";
 import { getMediumComputerMove } from "@/helpers/mediumLevel";
 import { getHardComputerMove } from "@/helpers/hardLevel";
+import { useNavigate } from "react-router-dom";
+import { storeItemsToLocalStorage } from "@/helpers/localStorage";
 
 const Main: React.FC = () => {
     const [turn, setTurn] = useState<string>('Player');
@@ -12,6 +14,13 @@ const Main: React.FC = () => {
     const [computerScore, setComputerScore] = useState<number>(0);
     const [showResultModal, setShowResultModal] = useState<boolean>(false);
     const [winnerResult, setWinnerResult] = useState<string>('');
+
+    const navigate = useNavigate();
+
+    const handleExitGame = useCallback(() => {
+        storeItemsToLocalStorage('isStartGame', false);
+        navigate('/');
+    }, []);
 
     const handleToggleShowResultModal = useCallback(() => {
         setShowResultModal(!showResultModal);
@@ -88,6 +97,7 @@ const Main: React.FC = () => {
         showResultModal={showResultModal}
         handleClickSquare={handleClickSquare}
         handleToggleShowResultModal={handleToggleShowResultModal}
+        handleExitGame={handleExitGame}
     />;
 };
 

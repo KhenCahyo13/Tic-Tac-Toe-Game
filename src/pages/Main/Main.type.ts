@@ -6,4 +6,5 @@ export interface MainViewProps {
     showResultModal: boolean;
     handleClickSquare: (index: number) => void;
     handleToggleShowResultModal: () => void;
+    handleExitGame: () => void;
 }

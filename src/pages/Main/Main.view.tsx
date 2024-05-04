@@ -6,7 +6,7 @@ import { MainViewProps } from "./Main.type";
 import ResultModal from "./ResultModal";
 import GradientButton from "@/components/GradientButton";
 
-const MainView: React.FC<MainViewProps> = ({ squares, playerScore, computerScore, winnerResult, showResultModal, handleClickSquare, handleToggleShowResultModal }) => (
+const MainView: React.FC<MainViewProps> = ({ squares, playerScore, computerScore, winnerResult, showResultModal, handleClickSquare, handleToggleShowResultModal, handleExitGame }) => (
     <main>
         {/* Result Modal */}
         <ResultModal
@@ -33,7 +33,7 @@ const MainView: React.FC<MainViewProps> = ({ squares, playerScore, computerScore
                     handleClickSquare={handleClickSquare}
                 />
                 {/* Exit Game */}
-                <GradientButton label="Exit Game" />
+                <GradientButton label="Exit Game" onClick={handleExitGame} />
             </div>
         </section>
     </main>

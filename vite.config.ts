@@ -15,6 +15,7 @@ export default defineConfig({
 			viewports: `${path.resolve(__dirname, './src/viewports/')}`,
 			assets: `${path.resolve(__dirname, './src/assets/')}`,
 			helpers: `${path.resolve(__dirname, './src/helpers/')}`,
+			hooks: `${path.resolve(__dirname, './src/hooks/')}`,
 		}
 	}
 });

@@ -1,8 +1,9 @@
-import Start from '@/pages/Start';
-import Main from './pages/Main';
+import Routes from './viewports/Routes/Routes';
 
 function App() {
-	return <Main />
+	return (
+		<Routes />
+	)
 }
 
 export default App

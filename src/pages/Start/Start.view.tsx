@@ -2,15 +2,16 @@ import { memo } from "react";
 import { difficultiesSelectItem } from "./Start.data";
 import GradientHeading from "@/components/GradientHeading";
 import GradientButton from "@/components/GradientButton";
+import { StartViewProps } from "./Start.type";
 
-const StartView: React.FC = () => (
+const StartView: React.FC<StartViewProps> = ({ handleStartGame }) => (
     <main className="my-44">
         <section className="custom-container">
             <div className="flex flex-col items-center gap-4">
                 {/* Header Text */}
                 <GradientHeading text="TIC TAC TOE" />
                 {/* Start Button */}
-                <GradientButton label="Start" />
+                <GradientButton label="Start" onClick={handleStartGame} />
                 {/* Difficulty Select */}
                 <div className="flex flex-col items-center gap-4 mt-4">
                     <p className="text-gray-400 tracking-wider">Difficulty</p>
