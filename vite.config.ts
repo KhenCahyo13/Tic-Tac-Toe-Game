@@ -14,6 +14,7 @@ export default defineConfig({
       		themes: `${path.resolve(__dirname, './src/themes/')}`,
 			viewports: `${path.resolve(__dirname, './src/viewports/')}`,
 			assets: `${path.resolve(__dirname, './src/assets/')}`,
+			helpers: `${path.resolve(__dirname, './src/helpers/')}`,
 		}
 	}
 });

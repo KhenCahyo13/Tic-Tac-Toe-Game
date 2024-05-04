@@ -30,6 +30,7 @@
 			"themes/*": ["src/themes/*"],
 			"viewports/*": ["src/viewports/*"],
 			"assets/*": ["src/assets/*"],
+			"helpers/*": ["src/helpers/*"],
 		},
 	},
 	"include": [
