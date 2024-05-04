@@ -57,7 +57,9 @@ const Main: React.FC = () => {
         if (turn !== 'Computer') return;
     
         setSquares((prevSquares) => {
-            const index = level === 'Easy' ? getEasyComputerMove(prevSquares) : level === 'Medium' ? getMediumComputerMove(prevSquares) : level === 'Hard' ? getHardComputerMove(prevSquares) : null;
+            const index = level === 'Easy' ? getEasyComputerMove(prevSquares) : 
+                          level === 'Medium' ? getMediumComputerMove(prevSquares) : 
+                          level === 'Hard' ? getHardComputerMove(prevSquares) : null;
             if (index === undefined || index === null) {
                 return prevSquares;
             }
@@ -66,22 +68,17 @@ const Main: React.FC = () => {
             newSquares[index] = 'O';
             return newSquares;
         });
-    }, [turn, getEasyComputerMove]);
+    
+    }, [turn, level, getEasyComputerMove, getMediumComputerMove, getHardComputerMove]);    
 
     const handleClickSquare = useCallback((index: number) => {
-        if (turn !== 'Player') return;
+        if (turn !== 'Player' || squares[index] !== null) return;
     
-        setSquares((prevSquares) => {
-            if (prevSquares[index] || calculateGameWinner(squares)) {
-                return prevSquares;
-            }
-    
-            const newSquares = prevSquares.slice();
-            newSquares[index] = 'X';
-            return newSquares;
-        });
+        const newSquares = squares.slice();
+        newSquares[index] = 'X';
+        setSquares(newSquares);
         setTurn('Computer');
-    }, [turn, calculateGameWinner]);    
+    }, [turn, squares]);        
     
     useEffect(() => {
         const result = calculateGameWinner(squares);
